@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Gamer Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Press Start 2P', monospace;
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+      font-size: 14px;
+    }
+
+    .emojiRain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 2rem;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    .panel {
+      width: 90%;
+      max-width: 600px;
+      margin: 80px auto;
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 30px;
+      border: 2px solid #55ff99;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #00ffcc;
+    }
+
+    h1 {
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ffcc00;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      font-family: 'Press Start 2P', monospace;
+      background-color: #111;
+      border: 1px solid #55ff99;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+
+    .porcentaje {
+      display: flex;
+      gap: 10px;
+    }
+
+    .porcentaje input {
+      width: 50%;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #ff3366;
+      border: none;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    button:hover {
+      background-color: #cc0044;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 10px;
+      color: #aaa;
+    }
+
+    @media screen and (max-width: 480px) {
+      body {
+        font-size: 12px;
+        padding: 10px;
+      }
+
+      .panel {
+        margin: 40px auto;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      h1 {
+        font-size: 14px;
+      }
+
+      input, select, button {
+        font-size: 10px;
+        padding: 8px;
+      }
+
+      .porcentaje {
+        flex-direction: column;
+      }
+
+      .porcentaje input {
+        width: 100%;
+      }
+
+      footer {
+        font-size: 8px;
+      }
+
+      .emoji {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="emojiRain">
+  <div class="emoji" style="left: 5%; animation-duration: 6s;">🎮</div>
+  <div class="emoji" style="left: 15%; animation-duration: 7s;">👾</div>
+  <div class="emoji" style="left: 25%; animation-duration: 8s;">🕹️</div>
+  <div class="emoji" style="left: 35%; animation-duration: 5s;">🍄</div>
+  <div class="emoji" style="left: 45%; animation-duration: 6s;">💎</div>
+  <div class="emoji" style="left: 55%; animation-duration: 7s;">⚔️</div>
+  <div class="emoji" style="left: 65%; animation-duration: 8s;">🎮</div>
+  <div class="emoji" style="left: 75%; animation-duration: 6s;">👾</div>
+  <div class="emoji" style="left: 85%; animation-duration: 9s;">🕹️</div>
+  <div class="emoji" style="left: 95%; animation-duration: 5s;">🍄</div>
+</div>
+
+<div class="panel">
+  <h1>Panel de seguidores para las más pros</h1>
+  <form id="formulario">
+    <label>Usuario</label>
+    <input type="text" placeholder="@usuario" required>
+
+    <label>Plataforma</label>
+    <select required>
+      <option value="">Seleccionar...</option>
+      <option value="instagram">Instagram</option>
+      <option value="tiktok">TikTok</option>
+      <option value="x">X</option>
+      <option value="youtube">YouTube</option>
+      <option value="facebook">Facebook</option>
+    </select>
+
+    <label>Cantidad de seguidores</label>
+    <input type="number" placeholder="Ej: 10000" required>
+
+    <label>Distribución de género</label>
+    <div class="porcentaje">
+      <input type="number" placeholder="% Hombres">
+      <input type="number" placeholder="% Mujeres">
+    </div>
+
+    <label>Región (opcional)</label>
+    <input type="text" placeholder="Ej: LATAM, Europa">
+
+    <label>Intereses (opcional)</label>
+    <input type="text" placeholder="Ej: Gaming, Moda, Tech">
+
+    <label>¿Añadir verificación a la cuenta? (sí/no)</label>
+    <input type="text" placeholder="sí o no" required>
+
+    <button type="submit">Enviar Solicitud</button>
+  </form>
+</div>
+
+<footer>👾 Echo por el más sigma Dyland (: | Estilo Retro Gamer 8-bit 🎯</footer>
+
+<script>
+  document.getElementById("formulario").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const inputs = this.querySelectorAll("input[required], select[required]");
+    let allFilled = true;
+
+    inputs.forEach(input => {
+      if (!input.value.trim()) {
+        allFilled = false;
+        input.style.borderColor = "red";
+      } else {
+        input.style.borderColor = "#55ff99";
+      }
+    });
+
+    if (allFilled) {
+      alert("✅ Todos los datos están confirmados. Solicitud enviada.");
+    } else {
+      alert("⚠️ Por favor, completa todas las preguntas obligatorias.");
+    }
+  });
+</script>
+
+</body>
+</html>
